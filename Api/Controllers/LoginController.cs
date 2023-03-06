@@ -19,7 +19,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("doAutoLogin")]
-        public IHttpActionResult DoAutoLogin([FromBody]JToken json)
+        public IHttpActionResult DoAutoLogin([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -72,7 +72,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("doLogin")]
-        public IHttpActionResult DoLogin([FromBody]JToken json)
+        public IHttpActionResult DoLogin([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -109,8 +109,8 @@ namespace NshApi
                             //如果未查询到数据，更新OPEN_ID
                             if (dt.Tables[0].Rows.Count == 0)
                             {
-                                var insertSql = string.Format(@"insert into a_user (`CODE`,`NAME`,`OPEN_ID`,`IMG_URL`,`REGIST_DATE`,`IS_DELETE`,`IS_SA`,`CRT_TIME`,`PHONE`,`COUNT_NUMBER`) 
-                                                            values('{0}','{1}','{2}','{3}','{4}',0,0,'{5}','{6}',3)"
+                                var insertSql = string.Format(@"insert into a_user (`CODE`,`NAME`,`OPEN_ID`,`IMG_URL`,`REGIST_DATE`,`IS_DELETE`,`IS_SA`,`CRT_TIME`,`PHONE`,`CISHU`,`JIFEN`) 
+                                                            values('{0}','{1}','{2}','{3}','{4}',0,0,'{5}','{6}',0,0)"
                                                             , DateTime.Now.ToString("yyyyMMddHHmmss"), name, openId,
                                                              url, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
                                 //var insertSql = string.Format(@"insert into a_user (`CODE`,`NAME`,`OPEN_ID`,`IMG_URL`,`REGIST_DATE`,`IS_DELETE`,`IS_SA`,`CRT_TIME`) 
@@ -142,7 +142,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("doUpdate")]
-        public IHttpActionResult DoUpdate([FromBody]JToken json)
+        public IHttpActionResult DoUpdate([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {

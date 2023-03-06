@@ -56,7 +56,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("postSearch")]
-        public IHttpActionResult PostSearch([FromBody]JToken json)
+        public IHttpActionResult PostSearch([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -83,12 +83,12 @@ namespace NshApi
         }
 
         /// <summary>
-        /// 奇遇查询
-        /// http://localhost:64665/api/_search/postQiyuSearch
+        /// 技能获取
+        /// http://localhost:64665/api/_search/postSkillSearch
         /// </summary>
         [HttpPost]
-        [Route("postQiyuSearch")]
-        public IHttpActionResult postQiyuSearch([FromBody]JToken json)
+        [Route("postSkillSearch")]
+        public IHttpActionResult postQiyuSearch([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -109,16 +109,16 @@ namespace NshApi
                         {
                             if (wsql != "")
                                 wsql += " and ";
-                            wsql += "a.groups ='" + groups + "'";
+                            wsql += "a.GROUP_NAME ='" + groups + "'";
                         }
                         if (wsql == "")
                         {
                             wsql = "1=1";
                         }
 
-                        string sql = string.Format(@"SELECT a.KID ,B.KID AS DETAIL_ID,a.GROUPS,a.NAME,b.CODE,B.IS_ENABLE,B.CLUE,B.`OPENING_CONDITIONS`,B.`COORDINATE`,B.`ENDING`,B.`FILLER`,B.`CONTRIBUTOR`,B.`IS_DELETE`
-                                        ,B.`CRT_TIME`,B.`FILLER_ID`,B.`CONTRIBUTOR_ID`,B.`COORDINATE_URL` FROM `b_adventure_strategy_category` AS a LEFT JOIN `b_adventure_strategy` AS b
-                                        ON a.NAME=b.NAME AND b.is_enable=1 where {0}", wsql);
+                        string sql = string.Format(@"SELECT a.KID ,B.KID AS DETAIL_ID,a.GROUP_NAME,a.NAME,b.CODE,B.`NAME` AS DETAIL_NAME,B.`TRIGGER_LOCATION`,B.`LOCATION`,B.`ACCESS`,B.`IS_DELETE`
+                                        ,B.`CRT_TIME` FROM `B_GET_JINENG` AS a LEFT JOIN `B_GET_JINENG_DETAIL` AS b
+                                        ON a.NAME=b.NAME where {0}", wsql);
                         //排序
                         if (orderByField != "" && orderByField != null)
                         {
@@ -144,7 +144,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("postCaipuSearch")]
-        public IHttpActionResult postCaipuSearch([FromBody]JToken json)
+        public IHttpActionResult postCaipuSearch([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -167,13 +167,13 @@ namespace NshApi
                         {
                             if (wsql != "")
                                 wsql += " and ";
-                            wsql += "groups ='" + groups + "'";
+                            wsql += "GROUP_NAME ='" + groups + "'";
                         }
                         if (wsql == "")
                         {
                             wsql = "1=1";
                         }
-                        string sql = string.Format(@"SELECT A.KID,B.KID AS DETAIL_ID,A.GROUPS,A.NAME,B.DETAIL_NAME,B.CONTENT,B.IS_DELETE,B.CRT_TIME,B.`FILLER`,B.`CONTRIBUTOR` FROM B_CAIPU_CATEGORY AS A 
+                        string sql = string.Format(@"SELECT A.KID,B.KID AS DETAIL_ID,A.GROUP_NAME,A.NAME,B.DETAIL_NAME,B.CONTENT,B.IS_DELETE,B.CRT_TIME,B.`FILLER`,B.`CONTRIBUTOR` FROM B_CAIPU_CATEGORY AS A 
                                                         LEFT JOIN (SELECT * FROM B_CAIPU WHERE IS_ENABLE=1) AS B
                                                         ON A.KID=B.PID where {0}", wsql);
                         //排序
@@ -202,7 +202,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("postFoodSearch")]
-        public IHttpActionResult postFoodSearch([FromBody]JToken json)
+        public IHttpActionResult postFoodSearch([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -223,13 +223,13 @@ namespace NshApi
                         {
                             if (wsql != "")
                                 wsql += " and ";
-                            wsql += "groups ='" + groups + "'";
+                            wsql += "GROUP_NAME ='" + groups + "'";
                         }
                         if (wsql == "")
                         {
                             wsql = "1=1";
                         }
-                        string sql = string.Format(@"SELECT A.KID,B.KID AS DETAIL_ID,A.GROUPS,A.NAME,B.DETAIL_NAME,B.CONTENT,B.IS_DELETE,B.CRT_TIME,B.`FILLER`,B.`CONTRIBUTOR` FROM b_food_fish_category AS A 
+                        string sql = string.Format(@"SELECT A.KID,B.KID AS DETAIL_ID,A.GROUP_NAME,A.NAME,B.DETAIL_NAME,B.CONTENT,B.IS_DELETE,B.CRT_TIME,B.`FILLER`,B.`CONTRIBUTOR` FROM b_food_fish_category AS A 
                                                         LEFT JOIN (SELECT * FROM b_food_fish WHERE IS_ENABLE=1) AS B
                                                         ON A.KID=B.PID where  {0}", wsql);
                         //排序
@@ -257,7 +257,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("postGuDongSearch")]
-        public IHttpActionResult postGuDongSearch([FromBody]JToken json)
+        public IHttpActionResult postGuDongSearch([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -280,7 +280,7 @@ namespace NshApi
                         {
                             if (wsql != "")
                                 wsql += " and ";
-                            wsql += "groups ='" + groups + "'";
+                            wsql += "GROUP_NAME ='" + groups + "'";
                         }
                         if (wsql == "")
                         {

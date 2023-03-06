@@ -20,7 +20,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("createAndUpdate/{tableName}")]
-        public IHttpActionResult CreteoAndUpdateTable(string tablename, [FromBody]JToken json)
+        public IHttpActionResult CreteoAndUpdateTable(string tablename, [FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -40,7 +40,7 @@ namespace NshApi
                             var ra = new Random();
                             var keys = "";
                             var values = "";
-                            if (tablename != "B_ORDER_MSG_DETAILS" && tablename != "B_MESSAGE" && tablename != "B_CHANGE_LIFE_DETAIL")
+                            if (tablename != "B_MAIN_INFO")
                             {
                                 keys = "`CODE`,`IS_DELETE`,`CRT_TIME`";
                                 values = "'" + DateTime.Now.ToString("yyyyMMddHHmmss") + ra.Next(1000, 9999) + "',0,'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
@@ -111,7 +111,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("del/{tableName}")]
-        public IHttpActionResult DelTable(string tablename, [FromBody]JToken json)
+        public IHttpActionResult DelTable(string tablename, [FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -156,7 +156,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("enableTable/{tableName}")]
-        public IHttpActionResult EnableTable(string tablename, [FromBody]JToken json)
+        public IHttpActionResult EnableTable(string tablename, [FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -282,7 +282,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("createPartner")]
-        public IHttpActionResult CreatePartner([FromBody]JToken json)
+        public IHttpActionResult CreatePartner([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
@@ -357,7 +357,7 @@ namespace NshApi
         /// </summary>
         [HttpPost]
         [Route("createDuanan")]
-        public IHttpActionResult CreateDuanan([FromBody]JToken json)
+        public IHttpActionResult CreateDuanan([FromBody] JToken json)
         {
             return this.TryReturn<object>(() =>
             {
