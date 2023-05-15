@@ -38,18 +38,11 @@ namespace NshApi
                         if (kid == "-1")
                         {
                             var ra = new Random();
-                            var keys = "";
-                            var values = "";
-                            if (tablename != "B_MAIN_INFO")
-                            {
-                                keys = "`CODE`,`IS_DELETE`,`CRT_TIME`";
-                                values = "'" + DateTime.Now.ToString("yyyyMMddHHmmss") + ra.Next(1000, 9999) + "',0,'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
-                            }
-                            else
-                            {
-                                keys = "`IS_DELETE`,`CRT_TIME`";
-                                values = "0,'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
-                            }
+                            //var keys = "";
+                            //var values = "";
+                            var keys = "`IS_DELETE`,`CRT_TIME`";
+                            var values = "0,'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+
                             foreach (var item in dict)
                             {
                                 if (item.Key != "KID")

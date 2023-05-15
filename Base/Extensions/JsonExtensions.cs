@@ -238,6 +238,9 @@ namespace Join
                         case "date":
                             sql = sql.AddSql(fieldName + compared + "'" + filterValue + "'", true);
                             break;
+                        case "int":
+                            sql = sql.AddSql(fieldName + compared + "" + filterValue + "", true);
+                            break;
                         default:
                             break;
                     }

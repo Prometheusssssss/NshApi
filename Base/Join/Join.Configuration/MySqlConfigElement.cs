@@ -79,16 +79,28 @@ namespace Join.Configuration
         }
         #endregion
 
+        #region B.基本属性[Pooling]
+        /// <summary>
+        /// Pooling
+        /// </summary>
+        [ConfigurationProperty("port", IsRequired = true)]
+        public string Port
+        {
+            get { return (string)base["port"]; }
+            set { base["port"] = value; }
+        }
+        #endregion
+
         #region X.成员方法
-        private string _ConnString=null;
+        private string _ConnString = null;
         /// <summary>
         /// 获取数据库连接字符串
         /// </summary>
         /// <returns></returns>
         public string ConnString()
         {
-            if(_ConnString==null)
-                _ConnString= $"Server={Server};Database={Database};Uid={Uid};Pwd={Password};SslMode={SslMode};Pooling={Pooling}";
+            if (_ConnString == null)
+                _ConnString = $"Server={Server};Port={Port};Database={Database};Uid={Uid};Pwd={Password};SslMode={SslMode};Pooling={Pooling}";
             return _ConnString;
         }
         #endregion

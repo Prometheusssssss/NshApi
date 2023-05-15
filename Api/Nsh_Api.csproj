@@ -142,14 +142,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BaseData\BanggongData.cs" />
-    <Compile Include="BaseData\XinFaData.cs" />
-    <Compile Include="BaseData\GongMingData.cs" />
-    <Compile Include="BaseData\PrederingData.cs" />
-    <Compile Include="BaseData\LangWenImgUrlData.cs" />
-    <Compile Include="BaseData\LangWenData.cs" />
-    <Compile Include="BaseData\StarLuckData.cs" />
+    <Compile Include="BaseData\ZhouTianData.cs" />
+    <Compile Include="BaseData\NeiGongData.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\NeiGongController.cs" />
     <Compile Include="Controllers\WXPController.cs" />
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\OssController.cs" />

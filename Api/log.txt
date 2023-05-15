@@ -2140,3 +2140,7 @@
 2020/09/10 8:35:07-createPartner 的 执行sql :UPDATE B_PARTNER_INTIMACY_DETAIL SET PROPS_NAME='30',INTIMACY='30' where kid='30'
 2020/10/13 15:07:35-执行通用查询sql：SELECT * from sel_purple_langwen where is_delete=0 and 1=1  order by SEQ_NO desc limit 0,10000
 2020/10/31 17:59:43-18502189410
+2023/5/15 9:45:05-postSearch的SQLJIN>0
+2023/5/15 9:46:32-postSearch的SQLJIN>0
+2023/5/15 16:11:36-postSearch的Exp无法将类型“Newtonsoft.Json.Linq.JArray”隐式转换为“string”。存在一个显式转换(是否缺少强制转换?)
+2023/5/15 16:12:19-postSearch的SQLJIN>0

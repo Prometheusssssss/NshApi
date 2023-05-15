@@ -60,6 +60,7 @@ namespace NshApi
         {
             return this.TryReturn<object>(() =>
             {
+                WxPayData wx = new WxPayData();
                 try
                 {
                     var jtoken = json.AsDynamic();
@@ -70,12 +71,14 @@ namespace NshApi
                     string orderByField = jtoken.orderByField;
                     string isDesc = jtoken.isDesc;
                     var wsql = filter.ToFilterSql();
+                    wx.WriteLogFile("postSearch的SQL" + wsql);
                     //构造take
                     var backResult = SearchHelper.SearchTable(tableName, wsql, page, limit, orderByField, isDesc);
                     return new { Table = backResult.Tables[0], IS_SUCCESS = true, MSG = "" };
                 }
                 catch (Exception ex)
                 {
+                    wx.WriteLogFile("postSearch的Exp" + ex.Message);
                     return new { Table = "", IS_SUCCESS = false, MSG = ex.Message };
                 }
 
@@ -115,10 +118,10 @@ namespace NshApi
                         {
                             wsql = "1=1";
                         }
-
-                        string sql = string.Format(@"SELECT a.KID ,B.KID AS DETAIL_ID,a.GROUP_NAME,a.NAME,b.CODE,B.`NAME` AS DETAIL_NAME,B.`TRIGGER_LOCATION`,B.`LOCATION`,B.`ACCESS`,B.`IS_DELETE`
+                        wsql += " AND a.IS_DELETE=0 AND b.IS_DELETE=0 ";
+                        string sql = string.Format(@"SELECT a.KID ,B.KID AS DETAIL_ID,a.GROUP_NAME,a.NAME,B.`TRIGGER_LOCATION`,B.`LOCATION`,B.`ACCESS`,B.`IS_DELETE`
                                         ,B.`CRT_TIME` FROM `B_GET_JINENG` AS a LEFT JOIN `B_GET_JINENG_DETAIL` AS b
-                                        ON a.NAME=b.NAME where {0}", wsql);
+                                        ON a.NAME=b.GROUP_NAME where {0}", wsql);
                         //排序
                         if (orderByField != "" && orderByField != null)
                         {

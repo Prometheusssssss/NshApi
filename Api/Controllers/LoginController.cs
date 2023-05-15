@@ -97,8 +97,8 @@ namespace NshApi
                     else
                     {
                         //解密手机号
-                        //var wxModel = DescodeWxSHA1(encryptedData, jsCode2Session.session_key, iv);
-                        //var tel = wxModel.PhoneNumber;
+                        var wxModel = DescodeWxSHA1(encryptedData, jsCode2Session.session_key, iv);
+                        var tel = wxModel.PhoneNumber;
 
                         using (var x = Join.Dal.MySqlProvider.X())
                         {
@@ -112,11 +112,7 @@ namespace NshApi
                                 var insertSql = string.Format(@"insert into a_user (`CODE`,`NAME`,`OPEN_ID`,`IMG_URL`,`REGIST_DATE`,`IS_DELETE`,`IS_SA`,`CRT_TIME`,`PHONE`,`CISHU`,`JIFEN`) 
                                                             values('{0}','{1}','{2}','{3}','{4}',0,0,'{5}','{6}',0,0)"
                                                             , DateTime.Now.ToString("yyyyMMddHHmmss"), name, openId,
-                                                             url, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "");
-                                //var insertSql = string.Format(@"insert into a_user (`CODE`,`NAME`,`OPEN_ID`,`IMG_URL`,`REGIST_DATE`,`IS_DELETE`,`IS_SA`,`CRT_TIME`) 
-                                //                            values('{0}','{1}','{2}','{3}','{4}',0,0,'{5}')"
-                                //                      , DateTime.Now.ToString("yyyyMMddHHmmss"), name, openId,
-                                //url, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                                             url, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), tel);
                                 x.ExecuteSqlCommand(insertSql);
                             }
                             //根据OPEN_ID去数据库查询登录信息
